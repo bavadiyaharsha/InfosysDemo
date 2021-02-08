@@ -25,7 +25,7 @@ class InfosysApplication :Application(){
 
         get() {
             if (retrofit == null) {
-
+//set web service call constraint
                 val builder = OkHttpClient.Builder().readTimeout(110, TimeUnit.SECONDS)
                     .connectTimeout(110, TimeUnit.SECONDS).writeTimeout(110, TimeUnit.SECONDS)
                 val httpLoggingInterceptor = HttpLoggingInterceptor()
@@ -33,14 +33,7 @@ class InfosysApplication :Application(){
                 builder.addInterceptor(object : Interceptor {
                     @Throws(IOException::class)
                     override fun intercept(chain: Interceptor.Chain): Response {
-
-                        val deviceId = Settings.Secure.getString(
-                            getContentResolver(),
-                            Settings.Secure.ANDROID_ID
-                        )
-
                         val request: Request = chain.request().newBuilder()
-                            .addHeader("device-id", deviceId)
                             .addHeader("device-type", "android")
                             .addHeader("app-version", "1.0")
                             .build()

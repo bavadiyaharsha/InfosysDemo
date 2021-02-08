@@ -15,7 +15,7 @@ class MainActivityViewMode : ViewModel() {
     var isLoading = MutableLiveData<Boolean>()
     var errormsg = MutableLiveData<String>()
     //set list of row data
-    var repolist = MutableLiveData<ArrayList<Row>>()
+    var repolist = MutableLiveData<List<Row>>()
     var title = MutableLiveData<String>()
 
 
@@ -37,7 +37,8 @@ class MainActivityViewMode : ViewModel() {
                     if (response.isSuccessful) {
                         val listResponse = response.body()
                         if (listResponse != null) {
-                            repolist.value = listResponse as ArrayList<Row>
+                            repolist.value = listResponse.rows
+                            title.value=listResponse.title
                         }
 
                     } else {
