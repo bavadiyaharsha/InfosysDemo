@@ -20,7 +20,7 @@ class MainActivityViewMode : ViewModel() {
 
 
     //web service call
-    fun getLocalRepo() {
+    fun getListOfData() {
         isLoading.value = true
 
         val userDataService = InfosysApplication.instance?.requestQueue?.create(
